@@ -37,10 +37,10 @@ def generate_offset_noisy_circle(n=200, radius=1, dist=1, center=(0, 0), noise_s
 def generate_adjacent_noisy_circle(n=200, radius=1, noise_std=0.1):
     return generate_offset_noisy_circle(n, radius, 0, (0, 0), noise_std)
 
-def generate_datasets():
-    concentric_dataset = [generate_concentric_noisy_circle() for i in range(100)]
-    disjoint_dataset = [generate_offset_noisy_circle() for i in range(100)]
-    adjacent_dataset = [generate_adjacent_noisy_circle() for i in range(100)]
+def generate_datasets(noise_std=0.1):
+    concentric_dataset = [generate_concentric_noisy_circle(noise_std=noise_std) for i in range(100)]
+    disjoint_dataset = [generate_offset_noisy_circle(noise_std=noise_std) for i in range(100)]
+    adjacent_dataset = [generate_adjacent_noisy_circle(noise_std=noise_std) for i in range(100)]
 
     dataset = {
         'concentric': concentric_dataset,
@@ -77,7 +77,4 @@ def plot_point_cloud(dataset):
     plt.tight_layout()
     plt.show()
 
-
-dataset = generate_datasets()
-plot_point_cloud(dataset)
 
